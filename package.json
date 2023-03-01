@@ -1,7 +1,7 @@
 {
   "name": "storybook-example",
   "version": "0.0.0",
-  "homepage": "http://Lizandra-Silva.github.io/storybook-exemplo",
+  "homepage": "http://Lizandra-Silva.github.io/storybook-exemplo/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
