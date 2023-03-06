@@ -1,42 +1,47 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/angular/types-6-0';
-import Button from './button.component';
+import { CommonModule } from '@angular/common'
+import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { ButtonComponent } from 'projects/storybook/src/lib/button/button.component';
+import { ButtonModule } from 'projects/storybook/src/lib/button/button.module';
 
 // More on default export: https://storybook.js.org/docs/angular/writing-stories/introduction#default-export
 export default {
-  title: 'Example/Button',
-  component: Button,
-  // More on argTypes: https://storybook.js.org/docs/angular/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+  title: 'Components/Button',
+  component: ButtonComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [ButtonModule, CommonModule, ]
+    })
+  ]
 } as Meta;
 
 // More on component templates: https://storybook.js.org/docs/angular/writing-stories/introduction#using-args
-const Template: Story<Button> = (args: Button) => ({
+const Template: Story<ButtonComponent> = (args: any) => ({
   props: args,
 });
 
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/angular/writing-stories/args
-Primary.args = {
-  primary: true,
-  label: 'Button',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
-};
-
-export const Large = Template.bind({});
+export const Large: Story<ButtonComponent> = Template.bind({});
 Large.args = {
-  size: 'large',
-  label: 'Button',
+  ...Template.args,
+  id: 'btn_l',
+  label: 'Button Large',
+  size: 'large'
 };
 
-export const Small = Template.bind({});
+export const Medium: Story<ButtonComponent> = Template.bind({});
+Medium.args = {
+  ...Template.args,
+  backgroundColor: 'green',
+  id: 'btn_m',
+  label: 'Button Medium',
+  size: 'medium'
+};
+
+export const Small: Story<ButtonComponent> = Template.bind({});
 Small.args = {
-  size: 'small',
-  label: 'Button',
+  ...Template.args,
+  backgroundColor: 'red',
+  id: 'btn_s',
+  label: 'Button Small',
+  size: 'small'
 };
